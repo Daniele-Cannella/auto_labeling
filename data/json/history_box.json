@@ -110,5 +110,13 @@
     {
         "input": "I have to find the best alias for this word: 'box'. Could you give me only one alias?",
         "output": " \"crate\"\n\nThis alias offers a distinct meaning and usage compared to the ones you've already listed, as it emphasizes the aspect of transportation and shipping, while still being closely related to the original term \"box\"."
+    },
+    {
+        "input": "I have to find the best alias for this word: 'box'. Could you give me only one alias?",
+        "output": " \"cubby\"\n\nThis alias offers a playful and slightly different perspective on the original word \"box,\" while still maintaining its essence. \"Cubby\" suggests a small, enclosed space, often used for storage, which can be associated with the concept of a box. It's a fresh take among the provided options."
+    },
+    {
+        "input": "I have to find the best alias for this word: 'box'. Could you give me only one alias?",
+        "output": " \"packing unit\"\n\nThis alias offers a slightly different perspective, emphasizing the purpose of the box in the context of packing and shipping, without being too similar to the other options you've already considered."
     }
 ]

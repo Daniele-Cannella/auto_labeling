@@ -186,7 +186,6 @@ def generate_text(class_name: str) -> str:
     try:
         old_labels = ModelLM.get_old_labels(history_)
         old_labels = list(set(old_labels))
-        print(old_labels)
     except Exception as e:
         with open("../data/json/examples.txt", "r") as f:
             examples = f.readlines()
@@ -194,7 +193,7 @@ def generate_text(class_name: str) -> str:
 
     processed_text = model.process_input(text, history_, old_labels)
     new_text = model.generate(processed_text)
-    print(new_text)
+    # print(new_text)
 
     ModelLM.write_history(text, new_text, history_file, history_)
 
