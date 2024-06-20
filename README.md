@@ -14,6 +14,12 @@ Reference links:
 
 ## Requirements
 
+To install the requiments:
+
+```cli
+>pip install -r requirements.txt
+```
+
 ## Execution
 
 ## Authors
