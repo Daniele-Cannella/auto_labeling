@@ -6,6 +6,9 @@
 
 Progetto in collaborazione
 
+Reference links:
+![CPU model](https://github.com/microsoft/onnxruntime-genai/blob/main/examples/python/phi-3-tutorial.md#run-on-cpu)
+
 ## Requirements
 
 ## Execution
