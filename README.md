@@ -13,3 +13,5 @@ Progetto in collaborazione
 ## Authors
 
 - GioMont3
+Daniele-Cannella
+Gulia-peretti
