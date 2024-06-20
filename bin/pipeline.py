@@ -1,4 +1,5 @@
 from Image import Image
+from Metrics import Metrics
 
 
 def main():
