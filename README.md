@@ -17,7 +17,7 @@ Reference links:
 To install the requiments:
 
 ```bash
-$auto_labeling> pip install -r requirements.txt
+$/auto_labeling> pip install -r requirements.txt
 ```
 
 ## Execution
