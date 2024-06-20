@@ -16,8 +16,8 @@ Reference links:
 
 To install the requiments:
 
-```cli
->pip install -r requirements.txt
+```bash
+$auto_labeling> pip install -r requirements.txt
 ```
 
 ## Execution
@@ -29,4 +29,4 @@ To install the requiments:
 - Gulia-peretti
 - Alessandro
 - AbitanteDiScampia
-- Neetre`
+- Neetre
