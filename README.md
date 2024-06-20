@@ -4,7 +4,7 @@
 
 ## Description
 
-Progetto in collaborazione
+Collab project
 
 Reference links:
 
@@ -15,6 +15,23 @@ Reference links:
 ## Requirements
 
 To install the requiments:
+
+Make shure to have started your python virtual environment!
+In order to keep your python interpreter clean on your machine.
+
+On Linux:
+
+```bash
+$/auto_labeling> souce .venv/bin/activate
+```
+
+On windows:
+
+```bash
+$/auto_labeling> .venv/Scripts/activate
+```
+
+Then procede with the installation of the libraries used in the packet
 
 ```bash
 $/auto_labeling> pip install -r requirements.txt
