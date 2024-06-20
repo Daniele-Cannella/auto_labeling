@@ -1,0 +1,16 @@
+torch
+pandas
+polars
+numpy
+opencv-python
+pillow
+pyarrow
+torchvision
+autodistill
+autodistill-grounding-dino
+transformers
+scikit-learn
+datasets
+onnxruntime-genai
+multiprocess
+ultralytics
