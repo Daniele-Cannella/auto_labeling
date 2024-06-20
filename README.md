@@ -6,6 +6,10 @@
 
 Collab project
 
+UML of the project:
+
+![Image](data\img_readme\SchemaLogicoPipeline.drawio.png)
+
 Reference links:
 
 [PHI-3 model CPU](https://github.com/microsoft/onnxruntime-genai/blob/main/examples/python/phi-3-tutorial.md#run-on-cpu)
