@@ -1,16 +1,22 @@
 # Auto_labeling
 
 ![Static Badge](https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3)
+![Language](https://img.shields.io/badge/Spellcheck-Pass-green?style=flat)
+![Platform](https://img.shields.io/badge/OS%20platform%20supported-Windows-green?style=flat)
+![Platform](https://img.shields.io/badge/OS%20platform%20supported-Unix-green?style=flat)
+![Language](https://img.shields.io/badge/Language-Python-yellowgreen?style=flat)
+![Testing](https://img.shields.io/badge/PEP8%20CheckOnline-Passing-green)
+![Testing](https://img.shields.io/badge/Test-Pass-green)
 
 ## Description
 
-Collab project
-
 UML of the project:
 
-![Image](data\img_readme\SchemaLogicoPipeline.drawio.png)
+![Image](data/img_readme/SchemaLogicoPipeline.drawio.png)
 
 Reference links:
+
+[Grounding-DINO]()
 
 [PHI-3 model CPU](https://github.com/microsoft/onnxruntime-genai/blob/main/examples/python/phi-3-tutorial.md#run-on-cpu)
 
@@ -42,6 +48,10 @@ $/auto_labeling> pip install -r requirements.txt
 ```
 
 ## Execution
+
+```bash
+$/auto_labeling/bin> python pipeline.py
+```
 
 ## Authors
 
