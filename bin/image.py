@@ -5,10 +5,11 @@ import numpy as np
 
 
 class Image:
-    def __init__(self, path: str) -> None:
+    def __init__(self, path: str, logger: object) -> None:
         self.image = None
         self.path = pathlib.Path(path)
         self.gt = self.load_gt()
+        self.logger = logger
 
     def load(self, load_type: str) -> None:
         """

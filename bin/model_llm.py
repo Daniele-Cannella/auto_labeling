@@ -38,7 +38,7 @@ class ModelLM:
     Class to handle the Language Model.
     """
 
-    def __init__(self, model_path: str, search_options: dict) -> None:
+    def __init__(self, model_path: str, search_options: dict, logger: object) -> None:
         """
         Initialize the Language Model.
 
@@ -49,6 +49,7 @@ class ModelLM:
         self.model = og.Model(model_path)  # "./models/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4"
         self.search_options = search_options
         self.params = og.GeneratorParams(self.model)
+        self.logger = logger
 
     @staticmethod
     def model_path() -> str:
