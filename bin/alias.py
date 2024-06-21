@@ -4,7 +4,6 @@
 
 import re
 
-
 class Alias:
     def __init__(self, alias: str, metrics):
         self.comb = None
