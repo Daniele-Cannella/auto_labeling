@@ -19,9 +19,9 @@ class Alias:
         self.comb = None
         self.metrics = metrics
         self.class_id = class_id
-        self.alias = self._validate(self._parse(alias))
+        self.alias = self.__validate(self.__parse(alias))
 
-    def _parse(self, alias: str) -> str:
+    def __parse(self, alias: str) -> str:
         """__parse.
         private method to split the alias if added more than one alias.
         :param alias: alias to split
@@ -31,7 +31,7 @@ class Alias:
             self.comb = alias.split(".")
         return alias
 
-    def _validate(self, alias: str) -> str:
+    def __validate(self, alias: str) -> str:
         """__validate.
         private method to remove all the special characters. Raise error if the alias was not valid.
         :param alias: alias to validate.
