@@ -181,7 +181,7 @@ def generate_text(class_name: str) -> str:
     history_file = f"../data/json/history_{class_name}.json"
     history_ = ModelLM.load_history(history_file)
 
-    text = f"I have to find the best alias for this word: '{class_name}'. Could you give me only one alias?"
+    text = f"I have to find the best alias for this word: '{class_name}'. Could you give me a new alias?"
 
     try:
         old_labels = ModelLM.get_old_labels(history_)
