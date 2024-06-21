@@ -2,28 +2,40 @@ import torchvision
 import torch
 from sklearn.metrics import auc
 
+
 class Metrics:
-    def __init__(self, confidence_scores):
-        self.confidence_scores=confidence_scores
-    
-    
-    def get_precision_recall(self):
-        results=[]
-        auc_score=0
-        
-        for i in range(0,len(self.confidence_scores)):
-            tp=self.confidence_scores[i][0]
-            fp=self.confidence_scores[i][1]
-            fn=self.confidence_scores[i][2]
+    def __init__(self, confidence_scores: list) -> None:
+        """
+        :params
+            confidence_scores: lista di [tp, fp, fn] per ogni confidence
+        :return:
+        """
+        self.confidence_scores = confidence_scores
 
-            recall = tp/(tp+fn)
-            precision = tp/(tp+fp) if (tp+fp)>0 else 0.001
-            auc_score +=  auc(recall, precision)
+    def get_precision_recall(self) -> tuple:
+        """
+        Calcola la media dell'auc per ogni confidence e per ognuna confidence calcola precision e recall
+        :params
+            self:
+        :return
+            tuple: contriene auc medio e lista di precision e recall per ogni confidence
+        """
+        results = []
+        auc_score = 0
 
-            results.append({'confidence':i+1/10, 'precision':precision,'recall':recall,'auc':auc_score})
-        mean_auc_score=auc_score/len(self.confidence_scores)
-        return((mean_auc_score,results))
-    
+        for i in range(0, len(self.confidence_scores)):
+            tp = self.confidence_scores[i][0]
+            fp = self.confidence_scores[i][1]
+            fn = self.confidence_scores[i][2]
+
+            recall = tp / (tp + fn)
+            precision = tp / (tp + fp) if (tp + fp) > 0 else 0.001
+            auc_score += auc(recall, precision)
+
+            results.append({'confidence': i + 1 / 10, 'precision': precision, 'recall': recall, 'auc': auc_score})
+        mean_auc_score = auc_score / len(self.confidence_scores)
+        return ((mean_auc_score, results))
+
 
 def get_confMatr(predictions: list[tuple], ground_truths: list[tuple], class_id: int):
     class_prs = [torch.Tensor(bbox) for _, bbox in predictions]
@@ -37,7 +49,7 @@ def get_confMatr(predictions: list[tuple], ground_truths: list[tuple], class_id:
 
     class_grs = torch.stack(class_grs, dim=0)
     class_prs = torch.stack(class_prs, dim=0)
-    if class_grs.numel()!=0 and class_prs.numel()!=0:
+    if class_grs.numel() != 0 and class_prs.numel() != 0:
         # Convert lists of boxes to tensors
         gr_bbxs = torchvision.ops.box_convert(
             boxes=torch.Tensor(class_grs),
@@ -45,7 +57,7 @@ def get_confMatr(predictions: list[tuple], ground_truths: list[tuple], class_id:
             out_fmt="xyxy",
         )
 
-        pr_bbxs  = torchvision.ops.box_convert(
+        pr_bbxs = torchvision.ops.box_convert(
             boxes=torch.Tensor(class_prs),
             in_fmt="cxcywh",
             out_fmt="xyxy",
@@ -70,4 +82,3 @@ def get_confMatr(predictions: list[tuple], ground_truths: list[tuple], class_id:
         false_positives = 1
 
     return true_positives, false_positives, false_negatives
-
