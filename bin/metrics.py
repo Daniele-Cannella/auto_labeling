@@ -1,6 +1,7 @@
 import torchvision
 import torch
 from sklearn.metrics import auc
+from log import Log
 
 class Metrics:
     def __init__(self, confidence_scores):

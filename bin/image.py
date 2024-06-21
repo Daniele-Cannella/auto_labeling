@@ -2,6 +2,7 @@ import cv2
 from PIL import Image as Pil_Image
 import pathlib
 import numpy as np
+from log import Log
 
 
 class Image:
