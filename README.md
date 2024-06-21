@@ -22,7 +22,7 @@
 
 UML of the project:
 
-![Image](data/img_readme/SchemaLogicoPipeline.drawio.png)
+![Image](data/img_readme/SchemaLogicoPipeline.drawio.jpg)
 
 Reference links:
 
