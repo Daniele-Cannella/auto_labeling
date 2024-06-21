@@ -36,7 +36,7 @@ class Metrics:
 
             results.append({'confidence': i + 1 / 10, 'precision': precision, 'recall': recall, 'auc': auc_score})
         mean_auc_score = auc_score / len(self.confidence_scores)
-        return ((mean_auc_score, results))
+        return (mean_auc_score, results)
 
 
 def get_confMatr(predictions: list[tuple], ground_truths: list[tuple], class_id: int):

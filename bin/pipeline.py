@@ -12,6 +12,8 @@ from metrics import Metrics
 from model_llm import generate_text, LLM
 from alias import Alias
 from dataset import Dataset
+from model_vis import ModelVis
+
 from log import Log
 import os
 import concurrent.futures
@@ -32,11 +34,20 @@ def process_class(list_of_images: list[Image], class_name: str, num_alias: int):
     for num in range(num_alias):
         try:
             text = generate_text(class_name)
-            print(f"Generated text for class {class_name}: {text}")
+            ic(f"Generated text for class {class_name}: {text}")
         except Exception as e:
-            print(f"Error generating text: {e}")
+            ic(f"Error generating text: {e}")
             logger.write_error(e)
             continue
+
+        confidence_scores = ModelVis(list_of_images)
+        metrics = Metrics(confidence_scores)
+        mean_auc_score, results = metrics.get_precision_recall()
+
+        alias = Alias()
+        alias.add_alias(class_name, text, mean_auc_score, results)
+        
+
     pass
 
 
