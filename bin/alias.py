@@ -81,7 +81,7 @@ class Alias:
         """__str__.
         :return: the string representation of the object.
         """
-        return f"oggetto:\n{self.alias}\n{self.metrics}"
+        return f"alias: {self.alias}, classID: {self.class_id}, metrics: {self.metrics}"
 
 
 def test():
