@@ -4,7 +4,10 @@
 
 import re
 from log import Log
+import os
 
+nome_f = os.path.dirname(__file__)
+logger = Log.write_log(os.path.join(nome_f, "log.txt"))
 
 class Alias:
     """Alias."""
