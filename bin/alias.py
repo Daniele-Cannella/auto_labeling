@@ -5,6 +5,7 @@
 import re
 import os
 
+
 class Alias:
     """Alias."""
 
@@ -21,7 +22,7 @@ class Alias:
         self.class_id = metrics[0]
         self.alias = self.__validate(self.__parse(alias))
 
-    def __parse(self, alias: str):
+    def __parse(self, alias: str) -> str:
         """__parse.
         private method to split the alias if added more than one alias.
         :param alias: alias to split
@@ -31,7 +32,7 @@ class Alias:
             self.comb = alias.split(".")
         return alias
 
-    def __validate(self, alias: str):
+    def __validate(self, alias: str) -> str:
         """__validate.
         private method to remove all the special characters. Raise error if the alias was not valid.
         :param alias: alias to validate.
