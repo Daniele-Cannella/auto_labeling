@@ -34,7 +34,7 @@ class Dataset():
 
     @classmethod
     def save_data(cls):
-        json_file = './data/dataset.json'
+        json_file = '../data/dataset.json'
 
         try:
             with open(json_file, 'a') as f:
@@ -51,7 +51,7 @@ class Dataset():
 
     def load_data(self) -> list[dict]:
         try:
-            json_file = './data/dataset.json'
+            json_file = '../data/dataset.json'
             with open(json_file, 'r') as f:
                 data = json.load(f)
             return data
