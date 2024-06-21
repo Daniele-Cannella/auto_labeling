@@ -26,7 +26,7 @@ UML of the project:
 
 Reference links:
 
-[Grounding-DINO]()
+[Grounding-DINO](https://huggingface.co/IDEA-Research/grounding-dino-base)
 
 [PHI-3 model CPU](https://github.com/microsoft/onnxruntime-genai/blob/main/examples/python/phi-3-tutorial.md#run-on-cpu)
 
