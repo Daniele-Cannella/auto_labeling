@@ -3,6 +3,8 @@
 
   <img src="https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3" alt="Phi-3-mini-4k-instruct-onnx">
 
+  <br>
+
   <img src="https://img.shields.io/badge/Spellcheck-Pass-green?style=flat" alt="Spellcheck Pass">
 
   <img src="https://img.shields.io/badge/OS%20platform%20supported-Windows-green?style=flat" alt="OS platform supported Windows">
