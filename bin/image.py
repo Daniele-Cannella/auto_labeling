@@ -26,7 +26,7 @@ class Image:
         else:
             raise ValueError("Unsupported load type. Use 'opencv' or 'pil'.")
 
-    def load_gt(self):
+    def load_gt(self) -> list[tuple[int, list[float]]]:
         """
         Load ground truth data from a text file associated with the image.
 
