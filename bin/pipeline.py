@@ -33,6 +33,7 @@ classes = {
 
 
 def process_class(list_of_images: list[Image], class_name: str, num_alias: int):
+    global alias, results
     for num in range(num_alias):
         try:
             alias = generate_text(class_name)
@@ -50,10 +51,7 @@ def process_class(list_of_images: list[Image], class_name: str, num_alias: int):
         metrics = Metrics(confidence_scores)
         mean_auc_score, results = metrics.get_precision_recall()
 
-        alias = Alias(alias, classes[class_name], results)
-        
-
-    pass
+    return Alias(alias, classes[class_name], results)
 
 
 def args_parsing():
@@ -80,6 +78,7 @@ def main(logger: object):
     for image in image_list:
         try:
             image.load('jpeg4py')
+            dataset._add_image(image)
             ic(image.image)
         except AttributeError as e:
             print(f"Error loading image: {e}")
@@ -94,7 +93,9 @@ def main(logger: object):
         futures = [executor.submit(process_class, image_list, class_name, args.alias) for class_name in classes]
         for future in concurrent.futures.as_completed(futures):
             try:
-                future.result()
+                alias = future.result()
+                dataset._add_alias(alias)
+                dataset.save_data()
             except Exception as e:
                 logger.write_error(f"Exception during class processing: {e}")
 
