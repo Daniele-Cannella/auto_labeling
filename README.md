@@ -1,22 +1,28 @@
-# Auto_labeling
+<div align="center">
+  <h1>AUTOL LABELING</h1>
 
-<p style="text-align: center;">
+  <img src="https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3" alt="Phi-3-mini-4k-instruct-onnx">
 
-![Phi-3-mini-4k-instruct-onnx](https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3)
+  <br>
 
-![Language](https://img.shields.io/badge/Spellcheck-Pass-green?style=flat)
-![Platform](https://img.shields.io/badge/OS%20platform%20supported-Windows-green?style=flat)
-![Platform](https://img.shields.io/badge/OS%20platform%20supported-Unix-green?style=flat)
-![Language](https://img.shields.io/badge/Language-Python-yellowgreen?style=flat)
-![Testing](https://img.shields.io/badge/PEP8%20CheckOnline-Passing-green)
-![Testing](https://img.shields.io/badge/Test-Pass-green)
+  <img src="https://img.shields.io/badge/Spellcheck-Pass-green?style=flat" alt="Spellcheck Pass">
 
-</p>
+  <img src="https://img.shields.io/badge/OS%20platform%20supported-Windows-green?style=flat" alt="OS platform supported Windows">
+
+  <img src="https://img.shields.io/badge/OS%20platform%20supported-Unix-green?style=flat" alt="OS platform supported Unix">
+
+  <img src="https://img.shields.io/badge/Language-Python-yellowgreen?style=flat" alt="Language Python">
+
+  <img src="https://img.shields.io/badge/PEP8%20CheckOnline-Passing-green" alt="PEP8 CheckOnline Passing">
+
+  <img src="https://img.shields.io/badge/Test-Pass-green" alt="Test Pass">
+</div>
+
 ## Description
 
 UML of the project:
 
-![Image](data/img_readme/SchemaLogicoPipeline.drawio.png)
+![Image](data/img_readme/SchemaLogicoPipeline.drawio.jpg)
 
 Reference links:
 
