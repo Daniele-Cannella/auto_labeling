@@ -203,7 +203,7 @@ def generate_groq(text: str) -> str:
             aliases.append(chunk.content)
         aliases = ''.join(aliases)
         print(aliases)
-        model_aliases = self.find_alias(aliases)
+        model_aliases = find_alias(aliases)
         if model_aliases:
             return model_aliases
     except Exception as e:
