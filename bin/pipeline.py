@@ -52,7 +52,6 @@ def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str
         mean_auc_score, results = metrics.get_precision_recall()
 
         dataset._add_alias(Alias(alias, classes[class_name], results))
-
     return
 
 
