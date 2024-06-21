@@ -33,7 +33,7 @@ import re
 LABEL_PATTERN = re.compile(r'".*?"') # Pattern to find the labels in the text
 
 
-class ModelLM:
+class LLM:
     """
     Class to handle the Language Model.
     """
@@ -202,18 +202,18 @@ def test():
         "temperature": 0.7,
         "repetition_penalty": 1.0,
     }
-    model_path = ModelLM.model_path()
+    model_path = LLM.model_path()
     try:
-        model = ModelLM(model_path, options)
+        model = LLM(model_path, options)
     except Exception as e:
         print("Model not found, downloading ...")
         try:
-            model_path = ModelLM.download_model()
+            model_path = LLM.download_model()
         except Exception as e:
             print("Error downloading model:", e)
             return
         print("Model downloaded")
-        model = ModelLM(model_path, options)
+        model = LLM(model_path, options)
 
     text = '''
 I have to find the best alias for this word: 'box'.
@@ -248,29 +248,29 @@ def generate_text(class_name: str) -> str:
         "temperature": 0.2,
         "repetition_penalty": 1.0,
     }
-    model_path = ModelLM.model_path()
+    model_path = LLM.model_path()
     try:
-        model = ModelLM(model_path, options)
+        model = LLM(model_path, options)
     except Exception as e:
         print("Model not found, downloading ...")
         try:
-            model_path = ModelLM.download_model()
+            model_path = LLM.download_model()
         except Exception as e:
             print("Error downloading model:", e)
             return
         print("Model downloaded")
-        model = ModelLM(model_path, options)
+        model = LLM(model_path, options)
 
     if not os.path.exists("../data/json"):
         os.mkdir("../data/json")
 
     history_file = f"../data/json/history_{class_name}.json"
-    history_ = ModelLM.load_history(history_file)
+    history_ = LLM.load_history(history_file)
 
     text = f"I have to find the best alias for this word: '{class_name}'. Could you give me a new alias?"
 
     try:
-        old_labels = ModelLM.get_old_labels(history_)
+        old_labels = LLM.get_old_labels(history_)
         old_labels = list(set(old_labels))
     except Exception as e:
         with open("../data/json/examples.txt", "r") as f:
@@ -281,7 +281,7 @@ def generate_text(class_name: str) -> str:
     new_text = model.generate(processed_text)
     # print(new_text)
 
-    ModelLM.write_history(text, new_text, history_file, history_)
+    LLM.write_history(text, new_text, history_file, history_)
 
     return LABEL_PATTERN.findall(new_text.split("\n")[0])[0]
 
