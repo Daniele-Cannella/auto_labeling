@@ -20,10 +20,10 @@
 
 ## Table of Contents
 
-- [Description](#:pencil2:%20Description)
-- [Requirements](#:clipboard:%20Requirements)
-- [Execution](#:diamond_shape_with_a_dot_inside:%20Execution)
-- [Authors](#:busts_in_silhouette:%20Authors)
+- [Description](#pencil2-description)
+- [Requirements](#clipboard-requirements)
+- [Execution](#diamond_shape_with_a_dot_inside-execution)
+- [Authors](#busts_in_silhouette-authors)
 
 ## :pencil2: Description
 
