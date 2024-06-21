@@ -2,6 +2,7 @@ import os
 import json
 from image import Image
 from alias import Alias
+from log import Log
 
 
 class Dataset():

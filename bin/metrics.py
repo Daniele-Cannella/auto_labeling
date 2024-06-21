@@ -1,6 +1,7 @@
 import torchvision
 import torch
 from sklearn.metrics import auc
+from log import Log
 
 
 class Metrics:
