@@ -23,6 +23,7 @@
 - [Description](#pencil2-description)
 - [Requirements](#clipboard-requirements)
 - [Execution](#diamond_shape_with_a_dot_inside-execution)
+- [References](#link-references)
 - [Authors](#busts_in_silhouette-authors)
 
 ## :pencil2: Description
@@ -30,14 +31,6 @@
 UML of the project:
 
 ![Image](data/img_readme/SchemaLogicoPipeline.drawio.jpg)
-
-Reference links:
-
-[Grounding-DINO](https://huggingface.co/IDEA-Research/grounding-dino-base)
-
-[PHI-3 model CPU](https://github.com/microsoft/onnxruntime-genai/blob/main/examples/python/phi-3-tutorial.md#run-on-cpu)
-
-[PHI-3 model ONNX](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx/tree/main/cpu_and_mobile)
 
 ## :clipboard: Requirements
 
@@ -69,6 +62,14 @@ $/auto_labeling> pip install -r requirements.txt
 ```bash
 $/auto_labeling/bin> python pipeline.py
 ```
+
+## :link: References
+
+[Grounding-DINO](https://huggingface.co/IDEA-Research/grounding-dino-base)
+
+[PHI-3 model CPU](https://github.com/microsoft/onnxruntime-genai/blob/main/examples/python/phi-3-tutorial.md#run-on-cpu)
+
+[PHI-3 model ONNX](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx/tree/main/cpu_and_mobile)
 
 ## :busts_in_silhouette: Authors
 
