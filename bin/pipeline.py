@@ -29,10 +29,8 @@ def main(logger: object):
    image_list = [Image(image_path) for image_path in images_path_list]  # Create a list of Image objects
    
    for image in image_list:
-       image.load('PIL')
-       # ic(image.image)
-
-    
+       image.load('jpeg4py')
+       ic(image.image)
     
    pass
 
