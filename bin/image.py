@@ -24,7 +24,11 @@ class Image:
         elif load_type.lower() == "pil" or load_type.lower() == "pillow":
             self.image = np.array(Pil_Image.open(str_path))
         elif load_type.lower() == "jpeg4py" or load_type.lower() == "jpeg":
-            self.image = jpeg.JPEG(str_path).decode()
+            try:
+                self.image = jpeg.JPEG(str_path).decode()
+            except Exception as e:
+                print(f"Error loading image with jpeg4py: {e}")
+                print("Try executing 'sudo apt-get install libturbojpeg' and 'pip install jpeg4py' to install the required dependencies.")
         else:
             raise ValueError("Unsupported load type. Use 'opencv', 'pil', or 'jpeg4py'.")
 
