@@ -33,7 +33,8 @@ class Alias:
 
     def __validate(self, alias: str) -> str:
         """__validate.
-        private method to remove all the special characters. Raise ValueError if the alias is not valid.
+        private method to remove all the special characters.
+        Raise ValueError if the alias is not valid.
         :param alias: alias to validate.
         :type alias: str
         """
