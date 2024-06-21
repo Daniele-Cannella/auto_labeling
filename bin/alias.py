@@ -3,7 +3,7 @@
 """
 
 import re
-from bin.log import Log
+from log import Log
 
 
 class Alias:
