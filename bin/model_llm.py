@@ -29,6 +29,9 @@ import os
 import json
 import re
 
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_groq import ChatGroq
+
 
 LABEL_PATTERN = re.compile(r'".*?"') # Pattern to find the labels in the text
 
@@ -73,7 +76,7 @@ class LLM:
         os.system("huggingface-cli download microsoft/Phi-3-mini-4k-instruct-onnx --include cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/* --local-dir ./models")
         return "./models/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4"
 
-    def generate(self, text: str) -> str:
+    def generate_phi(self, text: str) -> str:
         """
         Generate text from the input text.
 
@@ -102,6 +105,37 @@ class LLM:
         new_text = [tokenizer_stream.decode(new_token) for new_token in new_tokens]
         new_text = ''.join(new_text)
         return new_text
+    
+    def find_alias(aliases):
+        elab_aliases = []
+        aliases = aliases.split("\n")[1:-1]
+        for alias in aliases:
+            if "**" in alias:
+                alias = alias.split("**")[1]
+                elab_aliases.append(alias.lower() + " .")
+            else:
+                alias = alias.split(". ")
+                print(alias)
+                if len(alias) > 1:
+                    elab_aliases.append(alias[1].lower() + " .")
+        return elab_aliases
+    
+    def generate_groq(self, text: str) -> str:
+        try:
+            chat = ChatGroq(temperature=1, model="llama3-70b-8192", api_key="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")
+            prompt = ChatPromptTemplate.from_messages([("human", text)])
+            chain = prompt | chat
+            aliases = []
+            for chunk in chain.stream({"topic": class_id}):
+                aliases.append(chunk.content)
+            aliases = ''.join(aliases)
+            print(aliases)
+            model_aliases = self.find_alias(aliases)
+            if model_aliases:
+                return model_aliases
+        except Exception as e:
+            print(f"Error generating aliases using model: {e}")
+
 
     def process_history(self, history: list) -> str:
         """
