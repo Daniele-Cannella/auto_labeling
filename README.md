@@ -1,33 +1,19 @@
 <div align="center">
   <h1>AUTOL LABELING</h1>
 
-  <a href="https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3">
-    <img src="https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3" alt="Phi-3-mini-4k-instruct-onnx">
-  </a>
+  <img src="https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3" alt="Phi-3-mini-4k-instruct-onnx">
 
-  <a href="https://img.shields.io/badge/Spellcheck-Pass-green?style=flat">
-    <img src="https://img.shields.io/badge/Spellcheck-Pass-green?style=flat" alt="Spellcheck Pass">
-  </a>
+  <img src="https://img.shields.io/badge/Spellcheck-Pass-green?style=flat" alt="Spellcheck Pass">
 
-  <a href="https://img.shields.io/badge/OS%20platform%20supported-Windows-green?style=flat">
-    <img src="https://img.shields.io/badge/OS%20platform%20supported-Windows-green?style=flat" alt="OS platform supported Windows">
-  </a>
+  <img src="https://img.shields.io/badge/OS%20platform%20supported-Windows-green?style=flat" alt="OS platform supported Windows">
 
-  <a href="https://img.shields.io/badge/OS%20platform%20supported-Unix-green?style=flat">
-    <img src="https://img.shields.io/badge/OS%20platform%20supported-Unix-green?style=flat" alt="OS platform supported Unix">
-  </a>
+  <img src="https://img.shields.io/badge/OS%20platform%20supported-Unix-green?style=flat" alt="OS platform supported Unix">
 
-  <a href="https://img.shields.io/badge/Language-Python-yellowgreen?style=flat">
-    <img src="https://img.shields.io/badge/Language-Python-yellowgreen?style=flat" alt="Language Python">
-  </a>
+  <img src="https://img.shields.io/badge/Language-Python-yellowgreen?style=flat" alt="Language Python">
 
-  <a href="https://img.shields.io/badge/PEP8%20CheckOnline-Passing-green">
-    <img src="https://img.shields.io/badge/PEP8%20CheckOnline-Passing-green" alt="PEP8 CheckOnline Passing">
-  </a>
+  <img src="https://img.shields.io/badge/PEP8%20CheckOnline-Passing-green" alt="PEP8 CheckOnline Passing">
 
-  <a href="https://img.shields.io/badge/Test-Pass-green">
-    <img src="https://img.shields.io/badge/Test-Pass-green" alt="Test Pass">
-  </a>
+  <img src="https://img.shields.io/badge/Test-Pass-green" alt="Test Pass">
 </div>
 
 ## Description
