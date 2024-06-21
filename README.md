@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>AUTOL LABELING</h1>
+  <h1>AUTO LABELING</h1>
 
   <img src="https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3" alt="Phi-3-mini-4k-instruct-onnx">
 
