@@ -9,7 +9,7 @@ class Dataset():
     images = []
     aliases = []
 
-    def __init__(self, main_dir: str):
+    def __init__(self, main_dir: str = None):
         self.main_dir = main_dir
 
 
@@ -19,14 +19,14 @@ class Dataset():
             'images': self.images
         }
 
-    def _add_image(self, image: object[Image]):
+    def _add_image(self, image: object):
         if isinstance(image, Image):
             self.images.append(image)
             print(f"Image {image} added to dataset")
         else:
             raise ValueError("Errore: l'oggetto non è di tipo Image")
 
-    def _add_alias(self, alias: object[Alias]):
+    def _add_alias(self, alias: object):
         if alias is type(Alias):
             self.aliases.append(alias)
         else:

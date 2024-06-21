@@ -22,9 +22,10 @@ class Image:
         """
         str_path = str(self.path)
         if load_type.lower() == "opencv":
-            self.image = cv2.imread(str_path)
+            self.image = cv2.imread(str_path)  # numpy array
         elif load_type.lower() == "pil" or load_type.lower() == "pillow":
-            self.image = Pil_Image.open(str_path)
+            self.image = Pil_Image.open(str_path)  # PIL image
+            
         else:
             raise ValueError("Unsupported load type. Use 'opencv' or 'pil'.")
 
