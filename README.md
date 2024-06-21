@@ -18,7 +18,7 @@
   <img src="https://img.shields.io/badge/Test-Pass-green" alt="Test Pass">
 </div>
 
-## :pencil2:Description
+## :pencil2: Description
 
 UML of the project:
 
@@ -32,7 +32,7 @@ Reference links:
 
 [PHI-3 model ONNX](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx/tree/main/cpu_and_mobile)
 
-## Requirements
+## :clipboard: Requirements
 
 To install the requiments:
 
@@ -57,7 +57,7 @@ Then procede with the installation of the libraries used in the packet
 $/auto_labeling> pip install -r requirements.txt
 ```
 
-## Execution
+## :diamond_shape_with_a_dot_inside: Execution
 
 ```bash
 $/auto_labeling/bin> python pipeline.py
