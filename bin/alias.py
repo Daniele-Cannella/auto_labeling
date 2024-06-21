@@ -3,7 +3,7 @@
 """
 
 import re
-
+from log import Log
 
 class Alias:
     def __init__(self, alias: str, metrics):

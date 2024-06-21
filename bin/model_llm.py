@@ -28,6 +28,7 @@ import onnxruntime_genai as og
 import os
 import json
 import re
+from log import Log
 
 
 LABEL_PATTERN = re.compile(r'".*?"') # Pattern to find the labels in the text
