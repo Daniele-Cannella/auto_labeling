@@ -192,36 +192,27 @@ class LLM:
             return old_labels
         else:
             raise ValueError("No old labels found in the history.")
-        
-def generate_groq(text: str) -> str:
-    try:
-        chat = ChatGroq(temperature=1, model="llama3-70b-8192", api_key="")
-        prompt = ChatPromptTemplate.from_messages([("human", "{topic}")])
-        chain = prompt | chat
-        aliases = []
-        for chunk in chain.stream({"topic": text}):
-            aliases.append(chunk.content)
-        aliases = ''.join(aliases)
-        print(aliases)
-        model_aliases = find_alias(aliases)
-        if model_aliases:
-            return model_aliases
-    except Exception as e:
-        print(f"Error generating aliases using model: {e}")
 
-def find_alias(aliases):
-    elab_aliases = []
-    aliases = aliases.split("\n")[1:-1]
-    for alias in aliases:
-        if "**" in alias:
-            alias = alias.split("**")[1]
-            elab_aliases.append(alias.lower() + " .")
-        else:
-            alias = alias.split(". ")
-            print(alias)
-            if len(alias) > 1:
-                elab_aliases.append(alias[1].lower() + " .")
-    return elab_aliases
+
+def generate_groq(api_key: str, text: str) -> str:
+        try:
+            chat = ChatGroq(temperature=1, model="llama3-70b-8192", api_key=api_key)
+            prompt = ChatPromptTemplate.from_messages([("human", "{topic}")])
+            chain = prompt | chat
+            new_text = []
+            for chunk in chain.stream({"topic": text}):
+                new_text.append(chunk.content)
+            new_text = ''.join(new_text)
+            print(new_text)
+            alias = find_alias(new_text)
+            if alias:
+                return alias
+        except Exception as e:
+            print(f"Error generating aliases using model: {e}")
+
+def find_alias(new_text: str):
+    alias = new_text.split(" ")[-1].strip('"')
+    return alias
 
 
 def test():
@@ -320,17 +311,21 @@ def generate_text(class_name: str, groq: bool) -> str:
         return LABEL_PATTERN.findall(new_text.split("\n")[0])[0]
 
     else:
-        text = '''I have to find the best alias for this word: 'box'.
+        text = '''
+<|user|>I have to find the best alias for this word: 'box'.
+Could you give me only one alias that is different from the one you gave me before?
+
+<|assistant|>Here's a new alias for the word "box": "Container"
+
+<|user|>I have to find the best alias for this word: 'box'.
 Could you give me only one alias?
+<|end|>
 
-You already gave me the following aliases: 'cube', 'crate', 'chest'
-
-An example of the word 'box':
-    -package
-    -casket
+<|assistant|>
 '''
+
         new_text = generate_groq(text)
-        print(new_text)
+        return new_text
 
 
 if __name__ == "__main__":

@@ -62,6 +62,7 @@ def args_parsing():
     )
     parser.add_argument('-i', '--indir', type=str, help='Input image path')
     parser.add_argument('-a', '--alias', type=int, help='Num of alias for each class')
+    parser.add_argument('-k', '--apikey', type=str, help='API key for the LLM Groq')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose mode')
     args = parser.parse_args()
     return args
