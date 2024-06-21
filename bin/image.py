@@ -1,33 +1,32 @@
 import cv2
 from PIL import Image as Pil_Image
 import pathlib
+import jpeg4py as jpeg
 import numpy as np
 from log import Log
 
-
 class Image:
-
     def __init__(self, path: str) -> None:
         self.image = None
         self.path = pathlib.Path(path)
         self.gt = self.load_gt()
 
-
     def load(self, load_type: str) -> None:
         """
         Load the image using the specified library.
 
-        :param load_type: The type of library to use for loading the image. Use 'opencv' or 'pil'.
+        :param load_type: The type of library to use for loading the image. Use 'opencv', 'pil', or 'jpeg4py'.
         :return: None
         """
         str_path = str(self.path)
         if load_type.lower() == "opencv":
-            self.image = cv2.imread(str_path)  # numpy array
+            self.image = cv2.imread(str_path)
         elif load_type.lower() == "pil" or load_type.lower() == "pillow":
-            self.image = Pil_Image.open(str_path)  # PIL image
-            
+            self.image = np.array(Pil_Image.open(str_path))
+        elif load_type.lower() == "jpeg4py" or load_type.lower() == "jpeg":
+            self.image = jpeg.JPEG(str_path).decode()
         else:
-            raise ValueError("Unsupported load type. Use 'opencv' or 'pil'.")
+            raise ValueError("Unsupported load type. Use 'opencv', 'pil', or 'jpeg4py'.")
 
     def load_gt(self) -> list[tuple[int, list[float]]]:
         """
@@ -64,7 +63,7 @@ class Image:
             image_info += f"Image size (PIL): {self.image.size}\n"
         elif isinstance(self.image, np.ndarray):
             height, width = self.image.shape[:2]
-            image_info += f"Image size (OpenCV): {width}x{height}\n"
+            image_info += f"Image size (OpenCV/jpeg4py): {width}x{height}\n"
         else:
             image_info += "Image size: Not loaded\n"
 
