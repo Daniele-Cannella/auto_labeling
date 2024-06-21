@@ -1,0 +1,1 @@
+pycodestyle --first <nome_file>.py --ignore=E501 -r

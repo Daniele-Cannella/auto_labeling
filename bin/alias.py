@@ -9,7 +9,7 @@ import os
 class Alias:
     """Alias."""
 
-    def __init__(self, alias: str, metrics: tuple):
+    def __init__(self, alias: str, class_id: int, metrics: tuple):
         """__init__.
         Constructor.
         :param alias: the string with the alias or aliases.
@@ -19,7 +19,7 @@ class Alias:
         """
         self.comb = None
         self.metrics = metrics
-        self.class_id = metrics[0]
+        self.class_id = class_id
         self.alias = self.__validate(self.__parse(alias))
 
     def __parse(self, alias: str) -> str:
