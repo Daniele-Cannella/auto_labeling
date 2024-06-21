@@ -57,7 +57,9 @@ def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str
 
 
 def args_parsing():
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser = argparse.ArgumentParser(
+        description='Process images to generate class aliases and predict bounding boxes using a visual model.'
+    )
     parser.add_argument('-i', '--indir', type=str, help='Input image path')
     parser.add_argument('-a', '--alias', type=int, help='Num of alias for each class')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose mode')
