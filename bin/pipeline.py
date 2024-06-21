@@ -12,6 +12,9 @@ from log import Log
 import os
 import concurrent.futures
 from math import ceil
+from icecream import ic
+
+ic.enable()
 
 '''
 class Pipeline:
@@ -24,9 +27,13 @@ def main(logger: object):
    dataset = Dataset()
    images_path_list = dataset.images_dir('../data/images')
    image_list = [Image(image_path) for image_path in images_path_list]  # Create a list of Image objects
-   print(image_list)
-   image_list = [image.load("opencv") for image in image_list]  # Load images using OpenCV
-   print(image_list)
+   
+   for image in image_list:
+       image.load('PIL')
+       # ic(image.image)
+
+    
+    
    pass
 
 
