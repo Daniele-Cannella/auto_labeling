@@ -100,9 +100,6 @@ def main(logger: object):
                 logger.write_error(f"Exception during class processing: {e}")
 
 
-    pass
-
-
 if __name__ == "__main__":
     nome_f = os.path.basename(__file__)
     logger = Log(nome_f)
