@@ -3,7 +3,6 @@
 """
 
 import re
-import os
 
 
 class Alias:
@@ -87,7 +86,7 @@ class Alias:
 
 def test():
     """main."""
-    prova = Alias("prova", (1, "prova"))
+    prova = Alias("prova", 2, (1, "prova"))
     print(prova)
 
 
