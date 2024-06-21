@@ -5,6 +5,7 @@
 import re
 from bin.log import Log
 
+
 class Alias:
     """Alias."""
 
@@ -21,17 +22,12 @@ class Alias:
         self.class_id = metrics[0]
         self.alias = self.__validate(self.__parse(alias))
 
-<<<<<<< HEAD
-
-    def _parse(self, alias: str):
-=======
     def __parse(self, alias: str):
         """__parse.
         private method to split the alias if added more than one alias.
         :param alias: alias to split
         :type alias: str
         """
->>>>>>> 98366f84e8664cd72a818ef41c8a183a8e0b19df
         if "." in alias:
             self.comb = alias.split(".")
         return alias
