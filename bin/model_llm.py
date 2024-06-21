@@ -106,6 +106,23 @@ class LLM:
         new_text = ''.join(new_text)
         return new_text
     
+    def generate_groq(self, text: str) -> str:
+        try:
+            chat = ChatGroq(temperature=1, model="llama3-70b-8192", api_key="")
+            prompt = ChatPromptTemplate.from_messages([("human", "{topic}")])
+            chain = prompt | chat
+            aliases = []
+            for chunk in chain.stream({"topic": text}):
+                aliases.append(chunk.content)
+            aliases = ''.join(aliases)
+            print(aliases)
+            model_aliases = self.find_alias(aliases)
+            if model_aliases:
+                return model_aliases
+        except Exception as e:
+            print(f"Error generating aliases using model: {e}")
+
+    
     def find_alias(aliases):
         elab_aliases = []
         aliases = aliases.split("\n")[1:-1]
@@ -119,22 +136,6 @@ class LLM:
                 if len(alias) > 1:
                     elab_aliases.append(alias[1].lower() + " .")
         return elab_aliases
-    
-    def generate_groq(self, text: str) -> str:
-        try:
-            chat = ChatGroq(temperature=1, model="llama3-70b-8192", api_key="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")
-            prompt = ChatPromptTemplate.from_messages([("human", text)])
-            chain = prompt | chat
-            aliases = []
-            for chunk in chain.stream({"topic": class_id}):
-                aliases.append(chunk.content)
-            aliases = ''.join(aliases)
-            print(aliases)
-            model_aliases = self.find_alias(aliases)
-            if model_aliases:
-                return model_aliases
-        except Exception as e:
-            print(f"Error generating aliases using model: {e}")
 
 
     def process_history(self, history: list) -> str:
@@ -262,7 +263,7 @@ An example of the word {class_name}:
     print(new_text)
 
 
-def generate_text(class_name: str) -> str:
+def generate_text(class_name: str, groq: bool) -> str:
     """
     Generate text for the given class name.
 
@@ -311,7 +312,11 @@ def generate_text(class_name: str) -> str:
         old_labels = [example.strip().split(",")[1] for example in examples]
 
     processed_text = model.process_input(text, history_, old_labels)
-    new_text = model.generate(processed_text)
+
+    if not groq:
+        new_text = model.generate_phi(processed_text)
+    else:
+        new_text = model.generate_groq(processed_text)
     # print(new_text)
 
     LLM.write_history(text, new_text, history_file, history_)
