@@ -42,7 +42,7 @@ In order to keep your python interpreter clean on your machine.
 On Linux:
 
 ```bash
-$/auto_labeling> souce .venv/bin/activate
+$/auto_labeling> source .venv/bin/activate
 ```
 
 On windows:
