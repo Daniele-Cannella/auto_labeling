@@ -33,7 +33,8 @@ class Alias:
 
     def __validate(self, alias: str) -> str:
         """__validate.
-        private method to remove all the special characters. Raise error if the alias was not valid.
+        private method to remove all the special characters.
+        Raise ValueError if the alias is not valid.
         :param alias: alias to validate.
         :type alias: str
         """
@@ -49,9 +50,8 @@ class Alias:
             validated_alias = cleaned_alias
 
         if len(validated_alias) == 0:
-            raise Exception("Alias non valido")
-        else:
-            return validated_alias
+            raise ValueError("Invalid alias: must be characters and or not empty")
+        return validated_alias
 
     def get_class_id(self):
         """get_class_id.
@@ -73,7 +73,7 @@ class Alias:
 
     def uinfo(self):
         """uinfo.
-        :return: all the usefull information of the object.
+        :return: all the useful information of the object.
         """
         return {"alias": self.alias, "class_id": self.class_id, "metrics": self.metrics}
 
