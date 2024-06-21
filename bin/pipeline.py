@@ -51,7 +51,6 @@ def process_class(list_of_images: list[Image], class_name: str, num_alias: int):
         mean_auc_score, results = metrics.get_precision_recall()
 
         alias = Alias(alias, classes[class_name], results)
-        
 
     pass
 
@@ -65,6 +64,11 @@ def args_parsing():
     return args
 
 
+def batching_images(image_path_list: list[str], batch_size: int):
+    for i in range(0, len(image_path_list), batch_size):
+        yield image_path_list[i:i + batch_size]
+
+
 def main(logger: object):
     args = args_parsing()
 
@@ -75,8 +79,13 @@ def main(logger: object):
 
     dataset = Dataset()
     images_path_list = dataset.images_dir(args.indir)   # '../data/images'
+
+    # c = batching_images(images_path_list, 10)
+    # print(next(c))
+    # print(next(c))
+
     image_list = [Image(image_path) for image_path in images_path_list]  # Create a list of Image objects
-   
+
     for image in image_list:
         try:
             image.load('jpeg4py')
@@ -97,9 +106,6 @@ def main(logger: object):
                 future.result()
             except Exception as e:
                 logger.write_error(f"Exception during class processing: {e}")
-
-
-    pass
 
 
 if __name__ == "__main__":
