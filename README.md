@@ -2,7 +2,9 @@
 
 <p align="center">
 
-![Phi-3-mini-4k-instruct-onnx](https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3)
+<a href="https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3">
+  <img src="https://img.shields.io/badge/LLM-phi3%20mini%204k%20onnx-lightblue?style=for-the-badge&logo=phi3" alt="Phi-3-mini-4k-instruct-onnx">
+</a>
 
 ![Language](https://img.shields.io/badge/Spellcheck-Pass-green?style=flat)
 ![Platform](https://img.shields.io/badge/OS%20platform%20supported-Windows-green?style=flat)
