@@ -8,9 +8,9 @@ class Dataset():
     images = []
     aliases = []
 
-    def __init__(self, main_dir: str, logger: object):
+    def __init__(self, main_dir: str):
         self.main_dir = main_dir
-        self.logger = logger
+
 
     def __dict__(self):
         Dataset.images = [str(image) for image in Dataset.images]

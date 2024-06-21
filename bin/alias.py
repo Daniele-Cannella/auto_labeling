@@ -5,12 +5,12 @@
 import re
 
 class Alias:
-    def __init__(self, alias: str, metrics, logger: object):
+    def __init__(self, alias: str, metrics):
         self.comb = None
         self.metrics = metrics
         self.class_id = metrics[0]
         self.alias = self._validate(self._parse(alias))
-        self.logger = logger
+
 
     def _parse(self, alias: str):
         if "." in alias:

@@ -28,6 +28,7 @@ import onnxruntime_genai as og
 import os
 import json
 import re
+from log import Log
 
 
 LABEL_PATTERN = re.compile(r'".*?"') # Pattern to find the labels in the text
@@ -38,7 +39,7 @@ class ModelLM:
     Class to handle the Language Model.
     """
 
-    def __init__(self, model_path: str, search_options: dict, logger: object) -> None:
+    def __init__(self, model_path: str, search_options: dict) -> None:
         """
         Initialize the Language Model.
 
@@ -49,7 +50,6 @@ class ModelLM:
         self.model = og.Model(model_path)  # "./models/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4"
         self.search_options = search_options
         self.params = og.GeneratorParams(self.model)
-        self.logger = logger
 
     @staticmethod
     def model_path() -> str:
@@ -189,6 +189,7 @@ class ModelLM:
         if old_labels:
             return old_labels
         else:
+            logger.write_error(f"{os.path.basename(__file__)}: No old labels found in the history.")
             raise
 
 

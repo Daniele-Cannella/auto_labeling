@@ -9,12 +9,16 @@ import os
 import concurrent.futures
 from math import ceil
 
-def main():
+def main(logger: object):
    pass
 
 
 if __name__ == "__main__":
-    main()
+    nome_f = os.path.basename(__file__)
+    logger = Log(nome_f)
+    logger.log(False)
+    main(logger)
+    logger.log(True)
 """
 import concurrent.futures
 import os

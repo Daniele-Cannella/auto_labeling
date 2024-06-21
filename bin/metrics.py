@@ -4,14 +4,14 @@ from sklearn.metrics import auc
 
 
 class Metrics:
-    def __init__(self, confidence_scores: list, logger: object) -> None:
+    def __init__(self, confidence_scores: list) -> None:
         """
         :params
             confidence_scores: lista di [tp, fp, fn] per ogni confidence
         :return:
         """
         self.confidence_scores = confidence_scores
-        self.logger = logger
+
 
     def get_precision_recall(self) -> tuple:
         """
