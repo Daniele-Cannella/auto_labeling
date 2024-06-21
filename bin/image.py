@@ -63,11 +63,9 @@ class Image:
         :return: A string representation of the image object.
         """
         image_info = f"Image path: {self.path}\n"
-        if isinstance(self.image, Pil_Image.Image):
-            image_info += f"Image size (PIL): {self.image.size}\n"
-        elif isinstance(self.image, np.ndarray):
+        if isinstance(self.image, np.ndarray):
             height, width = self.image.shape[:2]
-            image_info += f"Image size (OpenCV/jpeg4py): {width}x{height}\n"
+            image_info += f"Image size (np.ndarray): {width}x{height}\n"
         else:
             image_info += "Image size: Not loaded\n"
 
