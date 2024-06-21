@@ -188,8 +188,7 @@ class LLM:
         if old_labels:
             return old_labels
         else:
-            logger.write_error(f"{os.path.basename(__file__)}: No old labels found in the history.")
-            raise
+            raise ValueError("No old labels found in the history.")
 
 
 def test():
