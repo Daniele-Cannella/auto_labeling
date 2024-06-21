@@ -102,7 +102,7 @@ def main(logger: object):
             continue
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        futures = [executor.submit(process_class, image_list, class_name, args.alias) for class_name in classes]
+        futures = [executor.submit(process_class, dataset, image_list, class_name, args.alias) for class_name in classes]
         for future in concurrent.futures.as_completed(futures):
             try:
                 future.result()
