@@ -29,6 +29,7 @@ class Image:
             except Exception as e:
                 print(f"Error loading image with jpeg4py: {e}")
                 print("Try executing 'sudo apt-get install libturbojpeg' and 'pip install jpeg4py' to install the required dependencies.")
+                raise AttributeError
         else:
             raise ValueError("Unsupported load type. Use 'opencv', 'pil', or 'jpeg4py'.")
 
