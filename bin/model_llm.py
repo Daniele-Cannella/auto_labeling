@@ -34,17 +34,40 @@ LABEL_PATTERN = re.compile(r'".*?"') # Pattern to find the labels in the text
 
 
 class ModelLM:
+    """
+    Class to handle the Language Model.
+    """
+
     def __init__(self, model_path: str, search_options: dict) -> None:
+        """
+        Initialize the Language Model.
+
+        Args:
+            model_path (str): path to the model.
+            search_options (dict): search options for the model.
+        """
         self.model = og.Model(model_path)  # "./models/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4"
         self.search_options = search_options
         self.params = og.GeneratorParams(self.model)
 
     @staticmethod
     def model_path() -> str:
+        """
+        Get the path to the model.
+
+        Returns:
+            str: path to the model.
+        """
         return "./models/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4"
 
     @staticmethod
     def download_model() -> str:
+        """
+        Download the model if it is not found.
+
+        Returns:
+            str: path to the model.
+        """
         if not os.path.exists("./models"):
             os.mkdir("./models")
         os.system("huggingface-cli download microsoft/Phi-3-mini-4k-instruct-onnx --include cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/* --local-dir ./models")
@@ -87,7 +110,7 @@ class ModelLM:
         return text
 
     @staticmethod
-    def write_history(input_text: str, output_text: str, output_file: str, history_) -> None:
+    def write_history(input_text: str, output_text: str, output_file: str, history_: list[dict]) -> None:
         with open(output_file, 'w') as f:
             history_.append({"input": input_text, "output": output_text})
             json.dump(history_, f, indent=4)

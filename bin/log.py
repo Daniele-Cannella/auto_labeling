@@ -8,7 +8,7 @@ f_log = "../log/trace.log"
 
 class Log:
     
-    def __init__(self, nome_f):
+    def __init__(self, nome_f: str):
         self.nome_f = nome_f
 
     def log(self, term):
@@ -38,12 +38,12 @@ class Log:
             os.makedirs(os.path.dirname(f_log), exist_ok=True)
             self.write_error(ex)
 
-    def write_error(self, error):
+    def write_error(self, error: str):
         current_time = datetime.now().strftime("%H:%M:%S del giorno %m/%d/%Y")
         with open(f_log, 'a') as file:
             file.write(f"File: {self.nome_f}, Error: {error}, Time: {current_time}\n")
             
-    def write_msg(self, msg):
+    def write_msg(self, msg: str):
         current_time = datetime.now().strftime("%H:%M:%S del giorno %m/%d/%Y")
         with open(f_log, 'a') as file:
             file.write(f"File: {self.nome_f}, Message: {msg}, Time: {current_time}\n")

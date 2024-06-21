@@ -1,2 +1,3 @@
 .venv/
-bin/models/
+bin/models/.huggingface/
+bin/models/cpu_and_mobile/
