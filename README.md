@@ -20,10 +20,10 @@
 
 ## Table of Contents
 
-- [Description](#description)
-- [Requirements](#requirements)
-- [Execution](#execution)
-- [Authors](#authors)
+- [Description](#:pencil2:%20Description)
+- [Requirements](#:clipboard:%20Requirements)
+- [Execution](#:diamond_shape_with_a_dot_inside:%20Execution)
+- [Authors](#:busts_in_silhouette:%20Authors)
 
 ## :pencil2: Description
 
@@ -70,7 +70,7 @@ $/auto_labeling> pip install -r requirements.txt
 $/auto_labeling/bin> python pipeline.py
 ```
 
-## Authors
+## :busts_in_silhouette: Authors
 
 - GioMont3
 - Daniele-Cannella
