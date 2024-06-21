@@ -32,7 +32,7 @@ classes = {
 }
 
 
-def process_class(list_of_images: list[Image], class_name: str, num_alias: int):
+def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str, num_alias: int):
     global alias, results
     for num in range(num_alias):
         try:
@@ -51,7 +51,9 @@ def process_class(list_of_images: list[Image], class_name: str, num_alias: int):
         metrics = Metrics(confidence_scores)
         mean_auc_score, results = metrics.get_precision_recall()
 
-    return Alias(alias, classes[class_name], results)
+        dataset._add_alias(Alias(alias, classes[class_name], results))
+
+    return
 
 
 def args_parsing():
@@ -64,11 +66,10 @@ def args_parsing():
     args = parser.parse_args()
     return args
 
+
 def batching_images(image_path_list: list[str], batch_size: int):
     for i in range(0, len(image_path_list), batch_size):
         yield image_path_list[i:i + batch_size]
-
-
 
 
 def main(logger: object):
@@ -103,14 +104,14 @@ def main(logger: object):
             continue
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        futures = [executor.submit(process_class, image_list, class_name, args.alias) for class_name in classes]
+        futures = [executor.submit(process_class, dataset, image_list, class_name, args.alias) for class_name in classes]
         for future in concurrent.futures.as_completed(futures):
             try:
-                alias = future.result()
-                dataset._add_alias(alias)
-                dataset.save_data()
+                future.result()
             except Exception as e:
                 logger.write_error(f"Exception during class processing: {e}")
+
+    dataset.save_data()
 
 
 if __name__ == "__main__":

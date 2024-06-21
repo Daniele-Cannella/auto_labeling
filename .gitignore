@@ -1,7 +1,9 @@
 # ignore the venv dir
 .venv/
 .idea/
+
 bin/models/.huggingface/
 bin/models/cpu_and_mobile/
+bin/models/yolov10n.pt
 
 data/images
