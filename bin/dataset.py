@@ -1,6 +1,7 @@
 import os
 import json
 from image import Image
+from alias import Alias
 
 
 class Dataset():
@@ -16,38 +17,45 @@ class Dataset():
             'images': self.images
         }
 
-    def _add_image(self, image):
+    def _add_image(self, image: object[Image]):
         if isinstance(image, Image):
             self.images.append(image)
             print(f"Image {image} added to dataset")
         else:
             raise ValueError("Errore: l'oggetto non è di tipo Image")
 
-    def _add_alias(self, alias):
+    def _add_alias(self, alias: object[Alias]):
         if alias is type(Alias):
-            self.list_aliases.append(alias)
+            self.aliases.append(alias)
         else:
             raise ValueError("Errore: l'oggetto non è di tipo Alias")
 
     @classmethod
     def save_data(cls):
-        json_file = './dataset/dataset.json'
+        json_file = './data/dataset.json'
 
-        with open(json_file, 'a') as f:
-            Dataset.images = [str(image) for image in Dataset.images]
+        try:
+            with open(json_file, 'a') as f:
+                Dataset.images = [str(image) for image in Dataset.images]
 
-            for image in Dataset.images:
-                data = {
-                    f'images_saves' : Dataset.images,
-                    f'aliases_saves' : Dataset.aliases
-                }
-            json.dump(data, f, indent=4)
+                for image in Dataset.images:
+                    data = {
+                        'images_saves' : Dataset.images,
+                        'aliases_saves' : Dataset.aliases
+                    }
+                json.dump(data, f, indent=4)
+        except Exception as e:
+            print(f"Error saving data: {e}")
 
-    def load_data(self):
-        json_file = './dataset/dataset.json'
-        with open(json_file, 'r') as f:
-            data = json.load(f)
-        return data
+    def load_data(self) -> list[dict]:
+        try:
+            json_file = './data/dataset.json'
+            with open(json_file, 'r') as f:
+                data = json.load(f)
+            return data
+        except Exception as e:
+            print(f"Error loading data: {e}")
+            return []
 
     def images_dir(self, dir:str):
         list_images_path = []
