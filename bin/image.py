@@ -6,6 +6,7 @@ from log import Log
 
 
 class Image:
+
     def __init__(self, path: str) -> None:
         self.image = None
         self.path = pathlib.Path(path)

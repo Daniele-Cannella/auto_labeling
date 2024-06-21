@@ -59,7 +59,7 @@ class Dataset():
             print(f"Error loading data: {e}")
             return []
 
-    def images_dir(self, dir:str):
+    def images_dir(self, dir:str) -> list[str]:
         list_images_path = []
         for root, dirs, files in os.walk(dir):
             for file in files:
