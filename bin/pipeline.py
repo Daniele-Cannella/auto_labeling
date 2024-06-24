@@ -36,8 +36,8 @@ def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str
     c = 0
     for num in range(num_alias):
         try:
-            alias = generate_text(class_name)
-            ic(f"Generated alias for class {class_name}: {alias}")
+            alias = generate_text(class_name, False)
+            print(f"Generated alias for class {class_name}: {alias}")
         except Exception as e:
             ic(f"Error generating text: {e}")
             logger.write_error(e)
@@ -106,7 +106,8 @@ def main(logger: object):
             print(f"Error loading image: {e}")
             logger.write_error(e)
             continue
-
+    
+    '''
     with concurrent.futures.ProcessPoolExecutor() as executor:
         futures = [executor.submit(process_class, dataset, image_list, class_name, args.alias) for class_name in classes]
         for future in concurrent.futures.as_completed(futures):
@@ -114,6 +115,11 @@ def main(logger: object):
                 future.result()
             except Exception as e:
                 logger.write_error(f"Exception during class processing: {e}")
+
+    '''
+    for class_name in classes:
+        print(f"Processing class: {class_name}")
+        process_class(dataset, image_list, class_name, int(args.alias))
 
     dataset.save_data()
 

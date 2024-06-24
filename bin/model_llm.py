@@ -298,7 +298,7 @@ def generate_text(class_name: str, groq: bool) -> str:
             old_labels = LLM.get_old_labels(history_)
             old_labels = list(set(old_labels))
         except Exception as e:
-            with open("../data/json/examples.txt", "r") as f:
+            with open("../data/examples.txt", "r") as f:
                 examples = f.readlines()
             old_labels = [example.strip().split(",")[1] for example in examples]
 
@@ -311,13 +311,13 @@ def generate_text(class_name: str, groq: bool) -> str:
         return LABEL_PATTERN.findall(new_text.split("\n")[0])[0]
 
     else:
-        text = '''
-<|user|>I have to find the best alias for this word: 'box'.
+        text = f'''
+<|user|>I have to find the best alias for this word: {class_name}.
 Could you give me only one alias that is different from the one you gave me before?
 
-<|assistant|>Here's a new alias for the word "box": "Container"
+<|assistant|>Here's a new alias for the word '{class_name}': "Container"
 
-<|user|>I have to find the best alias for this word: 'box'.
+<|user|>I have to find the best alias for this word: '{class_name}'.
 Could you give me only one alias?
 <|end|>
 
