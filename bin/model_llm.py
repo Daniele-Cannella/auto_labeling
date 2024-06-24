@@ -300,7 +300,7 @@ def generate_text(class_name: str, groq: bool) -> str:
         except Exception as e:
             with open("../data/examples.txt", "r") as f:
                 examples = f.readlines()
-            old_labels = [example.strip().split(",")[1] for example in examples]
+            old_labels = [example.strip().split(",")[1] for example in examples if example.strip().split(",")[0] == class_name]
 
         processed_text = model.process_input(text, history_, old_labels)
 
