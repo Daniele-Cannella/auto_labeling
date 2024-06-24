@@ -15,7 +15,7 @@ from metrics import Metrics
 from model_llm import generate_text
 from alias import Alias
 from dataset import Dataset
-from model_vis import ModelVis
+from model_vis import request_vis
 
 from log import Log
 from icecream import ic
@@ -33,7 +33,8 @@ classes = {
 
 
 def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str, num_alias: int):
-    global alias, results
+    # global alias, results
+    c = 0
     for num in range(num_alias):
         try:
             alias = generate_text(class_name)
@@ -43,15 +44,18 @@ def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str
             logger.write_error(e)
             continue
 
-        list_of_gt = [image.get_ground_truth() for image in list_of_images]
+        # list_of_gt = [image.get_ground_truth() for image in list_of_images]
 
-        model_vis = ModelVis(list_of_images, list_of_gt)
-        confidence_scores = model_vis.predict(alias)
+        result = request_vis(alias)
 
-        metrics = Metrics(confidence_scores)
+        metrics = Metrics(result[1])
         mean_auc_score, results = metrics.get_precision_recall()
 
         dataset._add_alias(Alias(alias, classes[class_name], results))
+        if c == num_alias:
+            print("Alias generated for class: ", class_name)
+        
+        c += 1
     return
 
 
@@ -62,6 +66,7 @@ def args_parsing():
     parser.add_argument('-i', '--indir', type=str, help='Input image path')
     parser.add_argument('-a', '--alias', type=int, help='Num of alias for each class')
     parser.add_argument('-k', '--apikey', type=str, help='API key for the LLM Groq')
+    parser.add_argument('--read-type', type=str, help='Type of read for images (jpeg4py, opencv, pil)')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose mode')
     args = parser.parse_args()
     return args
@@ -91,7 +96,7 @@ def main(logger: object):
 
     for image in image_list:
         try:
-            image.load('jpeg4py')
+            image.load(args.read_type)
             dataset._add_image(image)
             ic(image.image)
         except AttributeError as e:
