@@ -39,7 +39,7 @@ class Dataset():
             data = json.load(file)
             old_data.append(data)
         try:
-            with open(json_file, 'a') as f:
+            with open(json_file, 'w') as f:
                 self.images = [str(image) for image in self.images]
                 for image in self.images:
                     data = {
