@@ -12,7 +12,6 @@ class Dataset():
     def _add_image(self, image:object):
         if isinstance(image, Image):
             self.images.append(image)
-            print(f"Image added to dataset")
         else:
             raise ValueError("Errore: l'oggetto non è di tipo Image")
 
