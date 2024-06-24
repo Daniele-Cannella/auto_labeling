@@ -5,8 +5,7 @@ from alias import Alias
 
 
 class Dataset():
-    def __init__(self, main_dir: str):
-        self.main_dir = main_dir
+    def __init__(self):
         self.images = []
         self.aliases = []
 
