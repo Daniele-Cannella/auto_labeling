@@ -1,6 +1,6 @@
 box,package
 box,casket
-bitter pack,Harsh Bottles
+bitter pack,bitter
 bitter pack,Tart Bottles
 bottle pack,flask Bundle
 bottle pack,Bottle Set

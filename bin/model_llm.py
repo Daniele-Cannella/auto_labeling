@@ -252,7 +252,7 @@ An example of the word {class_name}:
     print(new_text)
 
 
-def generate_text(class_name: str, groq: bool) -> str:
+def generate_text(class_name: str, groq: bool, api_key_groq: str) -> str:
     """
     Generate text for the given class name.
 
@@ -311,11 +311,19 @@ def generate_text(class_name: str, groq: bool) -> str:
         return LABEL_PATTERN.findall(new_text.split("\n")[0])[0]
 
     else:
+        with open("../data/examples.txt", "r") as f:
+            examples = f.readlines()
+        old_labels = [example.strip().split(",")[1] for example in examples if example.strip().split(",")[0] == class_name]
         text = f'''
 <|user|>I have to find the best alias for this word: {class_name}.
 Could you give me only one alias that is different from the one you gave me before?
 
-<|assistant|>Here's a new alias for the word '{class_name}': "Container"
+<|assistant|>Here's a new alias for the word '{class_name}': {old_labels[1]}
+
+<|user|>I have to find the best alias for this word: {class_name}.
+Could you give me only one alias that is different from the one you gave me before?
+
+<|assistant|>Here's a new alias for the word '{class_name}': {old_labels[1]}
 
 <|user|>I have to find the best alias for this word: '{class_name}'.
 Could you give me only one alias?
@@ -324,7 +332,7 @@ Could you give me only one alias?
 <|assistant|>
 '''
 
-        new_text = generate_groq(text)
+        new_text = generate_groq(api_key_groq, text)
         return new_text
 
 

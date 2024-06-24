@@ -30,11 +30,12 @@ class Metrics:
             fp = self.confidence_scores[i][1]
             fn = self.confidence_scores[i][2]
 
-            recall = tp / (tp + fn)
-            precision = tp / (tp + fp) if (tp + fp) > 0 else 1e-6
-            auc_score += auc(recall, precision)
+            recall = tp / (tp + fn) if (tp + fn) > 0 else tp/1e-6
+            precision = tp / (tp + fp) if (tp + fp) > 0 else tp/1e-6
+            results.append({'confidence': i + 1 / 10, 'precision': precision, 'recall': recall})
+        auc_score = auc(recall, precision)
 
-            results.append({'confidence': i + 1 / 10, 'precision': precision, 'recall': recall, 'auc': auc_score})
+            
         mean_auc_score = auc_score / len(self.confidence_scores)
         return (mean_auc_score, results)
 

@@ -31,12 +31,12 @@ classes = {
 }
 
 
-def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str, num_alias: int):
+def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str, num_alias: int, groq: bool, apikey: str):
     # global alias, results
     c = 0
     for num in range(num_alias):
         try:
-            alias = generate_text(class_name, False)
+            alias = generate_text(class_name, groq, apikey)
             print(f"Generated alias for class {class_name}: {alias}")
         except Exception as e:
             ic(f"Error generating text: {e}")
@@ -46,8 +46,9 @@ def process_class(dataset: Dataset, list_of_images: list[Image], class_name: str
         # list_of_gt = [image.get_ground_truth() for image in list_of_images]
 
         result = request_vis(alias)
+        print(result[1])
 
-        metrics = Metrics(result[1])
+        metrics = Metrics(result[1]['data'])
         mean_auc_score, results = metrics.get_precision_recall()
 
         dataset._add_alias(Alias(alias, classes[class_name], results))
@@ -64,6 +65,7 @@ def args_parsing():
     )
     parser.add_argument('-i', '--indir', type=str, help='Input image path')
     parser.add_argument('-a', '--alias', type=int, help='Num of alias for each class')
+    parser.add_argument('-q', '--groq', action="store_true", default=False, help='Use groq for prediction')
     parser.add_argument('-k', '--apikey', type=str, help='API key for the LLM Groq')
     parser.add_argument('--read-type', type=str, help='Type of read for images (jpeg4py, opencv, pil)')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose mode')
@@ -119,7 +121,7 @@ def main(logger: object):
     '''
     for class_name in classes:
         print(f"Processing class: {class_name}")
-        process_class(dataset, image_list, class_name, int(args.alias))
+        process_class(dataset, image_list, class_name, int(args.alias), args.groq, args.apikey)
 
     dataset.save_data()
 
