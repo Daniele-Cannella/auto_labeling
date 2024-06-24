@@ -4,7 +4,6 @@ Flow of the pipeline:
 2. Load the images using the specified library.
 3. Ask the LLm for alias of the classes.
 4. use the alias generated to predict the bbox of the images.
-
 '''
 
 import os
