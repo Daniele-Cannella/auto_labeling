@@ -1,0 +1,12 @@
+box,package
+box,casket
+bitter pack,Harsh Bottles
+bitter pack,Tart Bottles
+bottle pack,flask Bundle
+bottle pack,Bottle Set
+can pack,container set
+can pack,tin Collection
+crate,case
+crate,chest
+keg,drum
+keg,barrel
