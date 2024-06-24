@@ -3,6 +3,8 @@ import torch
 from sklearn.metrics import auc
 from log import Log
 
+import numpy as np
+
 
 class Metrics:
     def __init__(self, confidence_scores: list) -> None:
@@ -24,6 +26,8 @@ class Metrics:
         """
         results = []
         auc_score = 0
+        l_rec= []
+        l_pred= []
 
         for i in range(0, len(self.confidence_scores)):
             tp = self.confidence_scores[i][0]
@@ -32,10 +36,12 @@ class Metrics:
 
             recall = tp / (tp + fn) if (tp + fn) > 0 else tp/1e-6
             precision = tp / (tp + fp) if (tp + fp) > 0 else tp/1e-6
+            l_rec.append(recall)
+            l_pred.append(precision)
             results.append({'confidence': i + 1 / 10, 'precision': precision, 'recall': recall})
-        auc_score = auc(recall, precision)
+        print("l_rec", l_rec, "l_pred", l_pred)
+        auc_score = np.trapz(l_rec, l_pred)
 
-            
         mean_auc_score = auc_score / len(self.confidence_scores)
         return (mean_auc_score, results)
 

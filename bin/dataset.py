@@ -33,16 +33,19 @@ class Dataset():
         save_data.
         :return: None
         """
+        old_data = []
         json_file = '../data/dataset.json'
-
+        with open(json_file, 'r') as file:
+            data = json.load(file)
+            old_data.append(data)
         try:
-            with (open(json_file, 'a') as f):
+            with open(json_file, 'a') as f:
                 self.images = [str(image) for image in self.images]
                 for image in self.images:
                     data = {
                         'images_saves' : image,
                     }
-                json.dump(data, f, indent=4)
+                    old_data.append(data)
 
                 for alias in self.aliases:
                     data = {
@@ -50,8 +53,9 @@ class Dataset():
                         'class_id' : alias.class_id,
                         'metrics' : alias.metrics
                     }
-                json.dump(data, f, indent=4)
-                f.write("\n")
+                    old_data.append(data)
+                
+                json.dump(old_data, f, indent=4)
 
         except Exception as e:
             print(f"Error saving data: {e}")

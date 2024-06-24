@@ -6,9 +6,5 @@
     {
         "input": "I have to find the best alias for this word: 'box'. Could you give me only one alias?",
         "output": " \"Cube\""
-    },
-    {
-        "input": "I have to find the best alias for this word: 'box'. Could you give me a new alias?",
-        "output": null
     }
 ]
