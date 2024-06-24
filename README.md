@@ -34,7 +34,58 @@
 
 UML of the project:
 
-![Image](data/img_readme/SchemaLogicoPipeline.drawio.jpg)
+```mermaid
+classDiagram
+    class Dataset {
+        - parent_path: str
+        + images_dir(path: str) : list[str]
+        + save_data(data: dict) : json
+        + load_data(data: json) : dict
+        + add_alias(alias: alias)
+        + add_image(image: Image)
+    }
+
+    class Image {
+        - image_absolute_path: str
+        + load(load_type) : None
+        + load_gt(path: str) : list[tuple[int, list[float]]]
+    }
+
+    class LLM {
+        - performance_dictionary: dict
+        + get_alias() : alias
+    }
+
+    class modello_vis {
+        - img: ['PIL', np.array]
+        - text: str
+        + predict(img) : results
+    }
+
+    class Processing {
+        + Confusion_Matrix(results: list, gt: list[tuple[int, list[float]]]) : list[classe_id]
+    }
+
+    class metrics {
+        - list[tp, fp, fn]
+        + get_metrics() : list
+    }
+
+    class Alias {
+        - alias
+        - metrics
+        + get_aliases() : dict
+    }
+
+    Dataset --> Image : add_image
+    Dataset --> LLM : add_alias
+    Image --> modello_vis
+    LLM --> modello_vis : get_alias
+    modello_vis --> Processing : predict
+    Processing --> metrics : Confusion_Matrix
+    metrics --> Alias : get_metrics
+    Alias --> Dataset : get_aliases
+```
 
 ## :clipboard: Requirements
 
