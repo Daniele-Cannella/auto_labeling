@@ -9,7 +9,7 @@ class Dataset():
         self.images = []
         self.aliases = []
 
-    def _add_image(self, image:object):
+    def _add_image(self, image: object):
         """
         _add_image.
         :param image:
@@ -20,7 +20,7 @@ class Dataset():
         else:
             raise ValueError("Errore: l'oggetto non è di tipo Image")
 
-    def _add_alias(self, alias:object):
+    def _add_alias(self, alias: object):
         """
         _add_alias.
         :param alias:
@@ -35,26 +35,27 @@ class Dataset():
         """
         old_data = []
         json_file = '../data/dataset.json'
-        with open(json_file, 'r') as file:
-            data = json.load(file)
-            old_data.append(data)
+        if os.path.getsize(json_file) > 0:
+            with open(json_file, 'r') as file:
+                data = json.load(file)
+                old_data.append(data)
         try:
             with open(json_file, 'w') as f:
                 self.images = [str(image) for image in self.images]
-                for image in self.images:
-                    data = {
-                        'images_saves' : image,
-                    }
-                    old_data.append(data)
+                list_images = self.images
+                data = {
+                    'images': list_images
+                }
+                old_data.append(data)
 
                 for alias in self.aliases:
                     data = {
-                        'alias' : alias.alias,
-                        'class_id' : alias.class_id,
-                        'metrics' : alias.metrics
+                        'alias': alias.alias,
+                        'class_id': alias.class_id,
+                        'metrics': alias.metrics
                     }
                     old_data.append(data)
-                
+
                 json.dump(old_data, f, indent=4)
 
         except Exception as e:
@@ -74,7 +75,7 @@ class Dataset():
             print(f"Error loading data: {e}")
             return []
 
-    def images_dir(self, dir:str) -> list[str]:
+    def images_dir(self, dir: str) -> list[str]:
         """
         images_dir.
         :param dir: directory delle immagini
