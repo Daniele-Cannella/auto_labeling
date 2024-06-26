@@ -1,5 +1,7 @@
 '''
 Operation of dewarping the image
+
+
 '''
 
 import cv2 as cv
@@ -132,9 +134,9 @@ def dewarp(image_path: str, output_path: str):
     ps1 = np.float32([[847, 720], [1680, 700], [920, 1610], [1650, 1720]])
     ps2 = np.float32([[0, 0], [300, 0], [0, 300], [300, 300]])
 
-    M = cv.getPerspectiveTransform(ps1, ps2)
+    M = cv.getPerspectiveTransform(ps1, ps2)   # 
 
-    dst = cv.warpPerspective(img, M, (300, 300))
+    dst = cv.warpPerspective(img, M, (350, 350))
 
     cv.imwrite(output_path, dst)
     # cv.imshow(output_path, dst)
