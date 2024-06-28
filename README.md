@@ -32,6 +32,8 @@
 
 ## :pencil2: Description
 
+The project is a pipeline that allows you to automatically label images using the LLM model and the Grounding-DINO model. The pipeline is divided into several steps, each of which is implemented in a separate class. The pipeline is implemented in the `pipeline.py` file.
+
 UML of the project:
 
 ```mermaid
