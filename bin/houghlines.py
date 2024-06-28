@@ -70,25 +70,26 @@ def extrude_line(good_lines):
     if not good_lines:
         print("No good lines")
     else:
-        line = good_lines[1]
+        line = good_lines[8]
         x1, y1, x2, y2 = line
         print("Line: ", line)
-
-        line2 = x1, y1+1000, x2, y2+1000
+        line2 = x1, y1-1000, x2, y2-1000
         print("Line2: ", line2)
+
         return line, line2
 
 
 def draw_lines(l1, l2):
+
     img = cv.imread('../data/images/Horizontal/0b7d98ea-4200080346_5543_156.jpg')
     cv.line(img, (l1[0], l1[1]), (l1[2], l1[3]), (0, 255, 0), 2)
     cv.line(img, (l2[0], l2[1]), (l2[2], l2[3]), (0, 255, 0), 2)
 
+    cv.imwrite('../data/images/0b7d98ea-4200080346_5543_156.jpg', img)
+
     cv.imshow('image', img)
     cv.waitKey(0)
     cv.destroyAllWindows()
-
-    cv.imwrite('../data/images/0b7d98ea-4200080346_5543_156.jpg', img)
 
 
 def main():
