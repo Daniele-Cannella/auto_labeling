@@ -13,7 +13,7 @@ def get_lines(image_path, output_path):
         return None
     
     alpha = 1.5  # Contrast control (1.0-3.0)
-    beta = 0     # Brightness control (0-100)
+    beta = 30    # Brightness control (0-100)
     contrasted = cv.convertScaleAbs(src, alpha=alpha, beta=beta)
 
     dst = cv.Canny(contrasted, 150, 250, None, 3)
@@ -23,7 +23,7 @@ def get_lines(image_path, output_path):
 
     good_lines = []
     desired_angle = 10
-    angle_tolerance = 10
+    angle_tolerance = 5
 
     if linesP is not None:
         for i in range(0, len(linesP)):
@@ -66,30 +66,39 @@ def process_images(image_dir, output_dir):
 
     return all_good_lines
 
+
 def extrude_line(good_lines):
     if not good_lines:
         print("No good lines")
     else:
-        line = good_lines[8]
-        x1, y1, x2, y2 = line
-        print("Line: ", line)
-        line2 = x1, y1-1000, x2, y2-1000
-        print("Line2: ", line2)
+        pogo = []
+        for line in good_lines:
+            # line = good_lines[8]
+            x1, y1, x2, y2 = line
+            # print("Line: ", line)
+            line2 = x1, y1-1000, x2, int(y2-((1000/(100*5))+1000))
+            # print("Line2: ", line2)
+            pogo.append((line, line2))
 
-        return line, line2
+        return pogo
 
 
-def draw_lines(l1, l2):
+def draw_lines(pogo):
+    c = 0
+    for line in pogo:
+        l1, l2 = line
 
-    img = cv.imread('../data/images/Horizontal/0b7d98ea-4200080346_5543_156.jpg')
-    cv.line(img, (l1[0], l1[1]), (l1[2], l1[3]), (0, 255, 0), 2)
-    cv.line(img, (l2[0], l2[1]), (l2[2], l2[3]), (0, 255, 0), 2)
+        img = cv.imread('../data/images/Horizontal/0b7d98ea-4200080346_5543_156.jpg')
+        cv.line(img, (l1[0], l1[1]), (l1[2], l1[3]), (0, 255, 0), 2)
+        cv.line(img, (l2[0], l2[1]), (l2[2], l2[3]), (0, 255, 0), 2)
 
-    cv.imwrite('../data/images/0b7d98ea-4200080346_5543_156.jpg', img)
+        cv.imwrite('../data/images/0b7d98ea-4200080346_5543_156.jpg', img)
+        print(f"Line {c}")
+        cv.imshow('image', img)
+        cv.waitKey(0)
+        cv.destroyAllWindows()
 
-    cv.imshow('image', img)
-    cv.waitKey(0)
-    cv.destroyAllWindows()
+        c += 1
 
 
 def main():
@@ -97,8 +106,8 @@ def main():
     output_dir = '../data/images/Horizontal_houghlines_images/'
     all_good_lines = process_images(image_dir, output_dir)
     # print("All good lines:", all_good_lines)
-    l1, l2 = extrude_line(all_good_lines)
-    draw_lines(l1, l2)
+    pogo = extrude_line(all_good_lines)
+    draw_lines(pogo)
 
 if __name__ == "__main__":
     main()
