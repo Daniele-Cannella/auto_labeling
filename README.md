@@ -91,11 +91,11 @@ classDiagram
 
 ## :clipboard: Requirements
 
-Make shure to have 'huggingface-cli' installed on your machine, or download it from [here](https://huggingface.co/docs/huggingface_hub/guides/cli).
+Make sure to have 'huggingface-cli' installed on your machine, or download it from [here](https://huggingface.co/docs/huggingface_hub/guides/cli).
 
 To install the libraries used in the programs:
 
-Make shure to have started your python virtual environment!
+Make sure to have started your python virtual environment!
 In order to keep your python interpreter clean on your machine.
 
 On Linux:
